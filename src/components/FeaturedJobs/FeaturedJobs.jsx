@@ -20,9 +20,9 @@ const FeaturedJobs = () => {
     return (
         <div>
             <TextBox title={title} paragraph={paragraphText} />
-            <div className="flex flex-wrap gap-10 justify-center px-36 ">
+            <div className="flex flex-wrap gap-10 justify-center px-24 ">
                 {
-                    featuredJobs.slice(0, dataLoads).map(featuredJob => <FeatureJobCard featuredJob={featuredJob} key={featuredJob.id}></FeatureJobCard>)
+                    featuredJobs.slice(0, dataLoads).map((featuredJob, index) => <FeatureJobCard featuredJob={featuredJob} key={index}></FeatureJobCard>)
                 }
             </div>
             <div className={`text-center mt-10 ${dataLoads === featuredJobs.length && 'hidden' }`}>

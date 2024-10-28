@@ -3,7 +3,7 @@ import { HiMiniCurrencyDollar } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
 
-const FeatureJobCard = ({ featuredJob }) => {
+const FeatureJobCard = ({ featuredJob, isBookmark }) => {
     const {
         id,
         logo,
@@ -17,9 +17,9 @@ const FeatureJobCard = ({ featuredJob }) => {
 
 
     return (
-        <div className="card card-compact bg-base-100 w-2/5 border p-6">
-            <div className="mb-3">
-                <img
+        <div className={`card card-compact bg-base-100 w-[40%] border p-6 ${isBookmark && 'flex-row gap-10 justify-center items-center w-[100%]'}`}>
+            <div className="mb-3 w-36">
+                <img className="w-full h-12"
                     src={logo}
                     alt="" />
             </div>
@@ -40,10 +40,10 @@ const FeatureJobCard = ({ featuredJob }) => {
                         <p><span>{salary}</span></p>
                     </div>
                 </div>
-                <div className="card-actions">
+            </div>
+            <div className="card-actions">
                     <Link to={`/job/${id}`}><button className="btn btn-primary">View Details</button></Link>
                 </div>
-            </div>
         </div>
     );
 };

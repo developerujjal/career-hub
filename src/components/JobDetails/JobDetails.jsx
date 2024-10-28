@@ -31,7 +31,7 @@ const JobDetails = () => {
 
 
         const handleApplidJob = ()=>{
-            savedData(id);
+            savedData(idNumber);
             
             toast("Successfully Applied");
         }
