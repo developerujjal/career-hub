@@ -17,7 +17,7 @@ const FeatureJobCard = ({ featuredJob, isBookmark }) => {
 
 
     return (
-        <div className={`card card-compact bg-base-100 w-[40%] border p-6 ${isBookmark && 'flex-row gap-10 justify-center items-center w-[100%]'}`}>
+        <div className={`card card-compact bg-base-100  border p-6 ${isBookmark ? 'flex-row gap-10 justify-center items-center w-[100%]' : 'w-[40%]'}`}>
             <div className="mb-3 w-36">
                 <img className="w-full h-12"
                     src={logo}

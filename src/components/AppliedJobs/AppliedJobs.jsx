@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { getData } from "../utility/localStroage";
 import FeatureJobCard from "../FeatureJobCard/FeatureJobCard";
+import DropDown from "../DropDown/DropDown";
 // import AppliedJobsCard from "../AppliedJobsCard/AppliedJobsCard";
 
 const AppliedJobs = () => {
@@ -32,6 +33,11 @@ const AppliedJobs = () => {
     return (
         <section>
             <div className="max-w-screen-xl px-10 mx-auto py-20">
+                <div className="text-right pr-20">
+                    {
+                        <DropDown></DropDown>
+                    }
+                </div>
                 <div className="flex justify-center items-center flex-col">
                     <h1 className="mb-10"><span className="font-bold">Applied Jobs:</span> {displayDatas.length}</h1>
                     <div>
