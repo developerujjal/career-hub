@@ -1,6 +1,11 @@
+import { IoLocationOutline } from "react-icons/io5";
+import { HiMiniCurrencyDollar } from "react-icons/hi2";
+import { Link } from "react-router-dom";
+
 
 const FeatureJobCard = ({ featuredJob }) => {
     const {
+        id,
         logo,
         job_title,
         company_name,
@@ -26,17 +31,17 @@ const FeatureJobCard = ({ featuredJob }) => {
                     <button className="btn btn-outline btn-primary">{job_type}</button>
                 </div>
                 <div className="flex gap-5 mb-5">
-                    <div>
-                        <span></span>
+                    <div className="flex gap-1 items-center">
+                        <span><IoLocationOutline></IoLocationOutline></span>
                         <p><span>{location}</span></p>
                     </div>
-                    <div>
-                        <span></span>
+                    <div className="flex gap-1 items-center">
+                        <span><HiMiniCurrencyDollar></HiMiniCurrencyDollar></span>
                         <p><span>{salary}</span></p>
                     </div>
                 </div>
                 <div className="card-actions">
-                    <button className="btn btn-primary">View Details</button>
+                    <Link to={`/job/${id}`}><button className="btn btn-primary">View Details</button></Link>
                 </div>
             </div>
         </div>
