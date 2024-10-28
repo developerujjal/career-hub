@@ -29,7 +29,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/applied-jobs',
-        element: <AppliedJobs />
+        element: <AppliedJobs />,
+        loader: ()=> fetch('../jobs.json')
       },
       {
         path: '/blog',
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       {
         path: '/job/:id',
         element: <JobDetails />,
-        loader: ()=> fetch('../jobs.json')
+        loader: ()=> fetch('../jobs.json') // this is not a good practice
       }
 
     ]

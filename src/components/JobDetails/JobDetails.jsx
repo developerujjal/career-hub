@@ -4,7 +4,9 @@ import { MdOutlineSubtitles } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { IoLocation } from "react-icons/io5";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { savedData } from "../utility/localStroage";
 
 
 
@@ -13,10 +15,10 @@ import { IoLocation } from "react-icons/io5";
 const JobDetails = () => {
     const dataDetails = useLoaderData();
     const { id } = useParams();
+    
 
     const idNumber = parseFloat(id);
     let getMatch = dataDetails.find((dataDetail) => dataDetail.id === idNumber)
-    console.log(getMatch)
 
     const { job_description,
         job_responsibility,
@@ -25,6 +27,14 @@ const JobDetails = () => {
         salary,
         job_title,
         contact_information } = getMatch;
+
+
+
+        const handleApplidJob = ()=>{
+            savedData(id);
+            
+            toast("Successfully Applied");
+        }
 
 
     return (
@@ -76,8 +86,13 @@ const JobDetails = () => {
                             </div>
                         </div>
                         <div className="mt-4">
-                            <button className="btn w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">Apply Now</button>
+                            <button
+                            onClick={handleApplidJob}
+                            className="btn w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">Apply Now</button>
                         </div>
+
+                        <ToastContainer />
+
                     </div>
                 </div>
             </div>
