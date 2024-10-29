@@ -8,6 +8,7 @@ import DropDown from "../DropDown/DropDown";
 const AppliedJobs = () => {
     const jobsData = useLoaderData()
     const [displayDatas, setDisplayDatas] = useState([])
+    const [filterDisplayDatas, setFilterDisplayDatas]= useState([])
 
     useEffect(() => {
         const localStroageData = getData();
@@ -26,8 +27,24 @@ const AppliedJobs = () => {
                 }
             }
             setDisplayDatas(appliedjobsData)
+            setFilterDisplayDatas(appliedjobsData)
         }
     }, [])
+
+
+    const handleFilter = filter =>{
+        if(filter === "all"){
+            setFilterDisplayDatas(displayDatas)
+        }
+        else if(filter === "remote"){
+            const remoteDatas = displayDatas.filter(data => data.remote_or_onsite === "Remote")
+            setFilterDisplayDatas(remoteDatas)
+        }
+        else if(filter === "onsite"){
+            const onsiteData = displayDatas.filter(data => data.remote_or_onsite === "Onsite")
+            setFilterDisplayDatas(onsiteData)
+        }
+    }
 
 
     return (
@@ -35,14 +52,14 @@ const AppliedJobs = () => {
             <div className="max-w-screen-xl px-10 mx-auto py-20">
                 <div className="text-right pr-20">
                     {
-                        <DropDown></DropDown>
+                        <DropDown handleFilter={handleFilter}></DropDown>
                     }
                 </div>
                 <div className="flex justify-center items-center flex-col">
                     <h1 className="mb-10"><span className="font-bold">Applied Jobs:</span> {displayDatas.length}</h1>
                     <div>
                         {
-                            displayDatas.map((jobItem, index) => <FeatureJobCard featuredJob={jobItem} key={index} isBookmark={true}/>)
+                            filterDisplayDatas.map((jobItem, index) => <FeatureJobCard featuredJob={jobItem} key={index} isBookmark={true}/>)
                         }
                     </div>
                 </div>

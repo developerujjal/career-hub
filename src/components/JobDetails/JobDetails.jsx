@@ -6,7 +6,7 @@ import { MdEmail } from "react-icons/md";
 import { IoLocation } from "react-icons/io5";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { savedData } from "../utility/localStroage";
+import { getData, savedData } from "../utility/localStroage";
 
 
 
@@ -15,7 +15,7 @@ import { savedData } from "../utility/localStroage";
 const JobDetails = () => {
     const dataDetails = useLoaderData();
     const { id } = useParams();
-    
+
 
     const idNumber = parseFloat(id);
     let getMatch = dataDetails.find((dataDetail) => dataDetail.id === idNumber)
@@ -30,11 +30,24 @@ const JobDetails = () => {
 
 
 
-        const handleApplidJob = ()=>{
+    const handleApplidJob = () => {
+
+/*      savedData(idNumber);
+        toast.success("Successfully Applied"); */
+
+    
+        const getJobsData = getData();
+        const isExist = getJobsData.find((jobId) => jobId == idNumber);
+        if(!isExist){
             savedData(idNumber);
-            
-            toast("Successfully Applied");
+            toast.success("Successfully Applied");
         }
+        else{
+            toast.error("Already Added!")
+        }
+
+
+    }
 
 
     return (
@@ -87,8 +100,8 @@ const JobDetails = () => {
                         </div>
                         <div className="mt-4">
                             <button
-                            onClick={handleApplidJob}
-                            className="btn w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">Apply Now</button>
+                                onClick={handleApplidJob}
+                                className="btn w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">Apply Now</button>
                         </div>
 
                         <ToastContainer />
